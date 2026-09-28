@@ -22,14 +22,13 @@ dotnet ef database update --project SupportToolsServerDbTools.DbMigration --star
 
 ## Repository layout — sibling repos are required
 
-Projects reference sibling clones by relative path (`..\..\SupportToolsServerDbPart\...`, `..\..\SupportToolsServer\...`, `..\..\SystemTools\...`), so the repositories must be cloned next to each other:
+Projects reference sibling clones by relative path (`..\..\SupportToolsServerDbPart\...`, `..\..\SupportToolsServerCore\...`, `..\..\SystemTools\...`), so the repositories must be cloned next to each other. The server application itself (merabza/SupportToolsServer) is not needed here:
 
 ```
 <root>\
 ├── SupportToolsServerDbTools\   this repository (SupportToolsServerDbTools.slnx lives here)
 ├── SupportToolsServerDbPart\    SupportToolsServerDbContext and entity configurations (merabza/SupportToolsServerDbPart)
-├── SupportToolsServer\          domain entities and application abstractions (merabza/SupportToolsServer)
-├── SupportToolsServerShared\    API contracts (merabza/SupportToolsServerShared)
+├── SupportToolsServerCore\      domain entities and application abstractions (merabza/SupportToolsServerCore)
 └── SystemTools\                 shared libraries (merabza/SystemTools)
 ```
 
