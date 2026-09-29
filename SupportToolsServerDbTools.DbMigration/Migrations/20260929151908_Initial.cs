@@ -12,6 +12,19 @@ namespace SupportToolsServerDbTools.DbMigration.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "EditorConfigFileTypes",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Content = table.Column<string>(type: "nvarchar(max)", maxLength: 65536, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EditorConfigFileTypes", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "GitIgnoreFileTypes",
                 columns: table => new
                 {
@@ -46,6 +59,12 @@ namespace SupportToolsServerDbTools.DbMigration.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_EditorConfigFileTypes_Name",
+                table: "EditorConfigFileTypes",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_GitIgnoreFileTypes_Name",
                 table: "GitIgnoreFileTypes",
                 column: "Name",
@@ -72,6 +91,9 @@ namespace SupportToolsServerDbTools.DbMigration.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "EditorConfigFileTypes");
+
             migrationBuilder.DropTable(
                 name: "GitRepos");
 
