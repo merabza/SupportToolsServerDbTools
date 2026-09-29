@@ -12,8 +12,8 @@ using SupportToolsServerDbPart.Db;
 namespace SupportToolsServerDbTools.DbMigration.Migrations
 {
     [DbContext(typeof(SupportToolsServerDbContext))]
-    [Migration("20260928084746_AddGitRepos")]
-    partial class AddGitRepos
+    [Migration("20260928114632_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
