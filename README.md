@@ -6,6 +6,7 @@ EF Core migrations tooling of [SupportToolsServer](https://github.com/merabza/Su
 |---|---|
 | `SupportToolsServerDbTools.DbMigration` | Migrations assembly: the `Migrations` folder plus `AssemblyReference` |
 | `SupportToolsServerDbTools.FakeHost` | Minimal web host used only as the `dotnet ef` startup project; `SupportToolsServerDesignTimeDbContextFactory` creates the context at design time |
+| `SupportToolsServerDbTools.Tests` | xUnit tests of the design-time factory; they point `APPDATA` at a temporary folder, so the real user secrets are never read |
 
 The design-time factory reads the connection string from the FakeHost project's User Secrets (`ConnectionString` key; the `UserSecretsId` is in `SupportToolsServerDbTools.FakeHost.csproj`):
 
@@ -36,6 +37,7 @@ Projects reference sibling clones by relative path (`..\..\SupportToolsServerDbP
 
 ```powershell
 dotnet build SupportToolsServerDbTools.slnx
+dotnet test SupportToolsServerDbTools.slnx
 ```
 
 ## License

@@ -18,6 +18,9 @@
         <Project Path="../SystemTools/SystemTools.SharedKernel/SystemTools.SharedKernel.csproj" />
         <Project Path="../SystemTools/SystemTools.SystemToolsShared/SystemTools.SystemToolsShared.csproj" />
     </Folder>
+    <Folder Name="/Tests/">
+        <Project Path="SupportToolsServerDbTools.Tests/SupportToolsServerDbTools.Tests.csproj" />
+    </Folder>
     <Project Path="SupportToolsServerDbTools.DbMigration/SupportToolsServerDbTools.DbMigration.csproj" />
     <Project Path="SupportToolsServerDbTools.FakeHost/SupportToolsServerDbTools.FakeHost.csproj" />
 </Solution>

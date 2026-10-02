@@ -22,7 +22,8 @@ public sealed class SupportToolsServerDesignTimeDbContextFactory : SqlServerDesi
     protected override SupportToolsServerDbContext CreateDbContext(
         DbContextOptions<SupportToolsServerDbContext> options)
     {
+        //დიზაინის დროის კონსტრუქტორს დომენის მოვლენების დისპეტჩერი არ სჭირდება
         // ReSharper disable once DisposableConstructor
-        return new SupportToolsServerDbContext(options);
+        return new SupportToolsServerDbContext(options, true);
     }
 }
