@@ -12,8 +12,8 @@ using SupportToolsServerDbPart.Db;
 namespace SupportToolsServerDbTools.DbMigration.Migrations
 {
     [DbContext(typeof(SupportToolsServerDbContext))]
-    [Migration("20261004090751_AddInfrastructureResources")]
-    partial class AddInfrastructureResources
+    [Migration("20261005113410_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -390,6 +390,78 @@ namespace SupportToolsServerDbTools.DbMigration.Migrations
                     b.ToTable("NpmPackages");
                 });
 
+            modelBuilder.Entity("SupportToolsServerCore.Domain.ProjectTemplates.ProjectTemplate", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<Guid?>("ReactTemplateId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("SupportProjectType")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("TestProjectName")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("TestProjectShortName")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<bool>("UseCarcass")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("UseDatabase")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("UseDbPartFolderForDatabaseProjects")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("UseFluentValidation")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("UseHttps")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("UseIdentity")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("UseMenu")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("UseReCounter")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("UseReact")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("UseSignalR")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Version")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(1);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.HasIndex("ReactTemplateId");
+
+                    b.ToTable("ProjectTemplates");
+                });
+
             modelBuilder.Entity("SupportToolsServerCore.Domain.ReactAppTemplates.ReactAppTemplate", b =>
                 {
                     b.Property<Guid>("Id")
@@ -445,6 +517,187 @@ namespace SupportToolsServerDbTools.DbMigration.Migrations
                         .IsUnique();
 
                     b.ToTable("Runtimes");
+                });
+
+            modelBuilder.Entity("SupportToolsServerCore.Domain.Servers.Server", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("FilesUserName")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("FilesUsersGroupName")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<Guid?>("RuntimeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ServerSideDeployFolder")
+                        .HasMaxLength(260)
+                        .HasColumnType("nvarchar(260)");
+
+                    b.Property<string>("ServerSideDownloadFolder")
+                        .HasMaxLength(260)
+                        .HasColumnType("nvarchar(260)");
+
+                    b.Property<int>("Version")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(1);
+
+                    b.Property<Guid?>("WebAgentId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("WebAgentInstallerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.HasIndex("RuntimeId");
+
+                    b.HasIndex("WebAgentId");
+
+                    b.HasIndex("WebAgentInstallerId");
+
+                    b.ToTable("Servers");
+                });
+
+            modelBuilder.Entity("SupportToolsServerCore.Domain.Settings.GlobalSettings", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("FileStorageForExchangeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("LocalPackageManagerWebApiClientId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("MediatRLicenseKey")
+                        .HasMaxLength(4000)
+                        .HasColumnType("nvarchar(4000)");
+
+                    b.Property<string>("ParametersFileDateMask")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("ParametersFileExtension")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("ProgramArchiveDateMask")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("ProgramArchiveExtension")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("ServiceDescriptionSignature")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<Guid?>("SmartSchemaForExchangeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("SmartSchemaForLocalId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("UploadTempExtension")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("Version")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(1);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FileStorageForExchangeId");
+
+                    b.HasIndex("LocalPackageManagerWebApiClientId");
+
+                    b.HasIndex("SmartSchemaForExchangeId");
+
+                    b.HasIndex("SmartSchemaForLocalId");
+
+                    b.ToTable("GlobalSettings", t =>
+                        {
+                            t.HasCheckConstraint("CK_GlobalSettings_Singleton", "[Id] = '00000000-0000-0000-0000-000000000001'");
+                        });
+                });
+
+            modelBuilder.Entity("SupportToolsServerCore.Domain.Settings.ProjectCreatorSettings", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("DatabaseExchangeFileStorageId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("DeveloperDbConnectionId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("FakeHostProjectName")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("IndentSize")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("ProductionEnvironmentId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ProductionServerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ProjectsFolderPathReal")
+                        .HasMaxLength(260)
+                        .HasColumnType("nvarchar(260)");
+
+                    b.Property<string>("SecretsFolderPathReal")
+                        .HasMaxLength(260)
+                        .HasColumnType("nvarchar(260)");
+
+                    b.Property<Guid?>("UseSmartSchemaId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Version")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(1);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DatabaseExchangeFileStorageId");
+
+                    b.HasIndex("DeveloperDbConnectionId");
+
+                    b.HasIndex("ProductionEnvironmentId");
+
+                    b.HasIndex("ProductionServerId");
+
+                    b.HasIndex("UseSmartSchemaId");
+
+                    b.ToTable("ProjectCreatorSettings", t =>
+                        {
+                            t.HasCheckConstraint("CK_ProjectCreatorSettings_Singleton", "[Id] = '00000000-0000-0000-0000-000000000001'");
+                        });
                 });
 
             modelBuilder.Entity("SupportToolsServerCore.Domain.SmartSchemas.SmartSchema", b =>
@@ -522,6 +775,137 @@ namespace SupportToolsServerDbTools.DbMigration.Migrations
                         .HasForeignKey("GitIgnoreFileTypeId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("SupportToolsServerCore.Domain.ProjectTemplates.ProjectTemplate", b =>
+                {
+                    b.HasOne("SupportToolsServerCore.Domain.ReactAppTemplates.ReactAppTemplate", null)
+                        .WithMany()
+                        .HasForeignKey("ReactTemplateId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("SupportToolsServerCore.Domain.Servers.Server", b =>
+                {
+                    b.HasOne("SupportToolsServerCore.Domain.Runtimes.Runtime", null)
+                        .WithMany()
+                        .HasForeignKey("RuntimeId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("SupportToolsServerCore.Domain.ApiClients.ApiClient", null)
+                        .WithMany()
+                        .HasForeignKey("WebAgentId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("SupportToolsServerCore.Domain.ApiClients.ApiClient", null)
+                        .WithMany()
+                        .HasForeignKey("WebAgentInstallerId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("SupportToolsServerCore.Domain.Settings.GlobalSettings", b =>
+                {
+                    b.HasOne("SupportToolsServerCore.Domain.FileStorages.FileStorage", null)
+                        .WithMany()
+                        .HasForeignKey("FileStorageForExchangeId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("SupportToolsServerCore.Domain.ApiClients.ApiClient", null)
+                        .WithMany()
+                        .HasForeignKey("LocalPackageManagerWebApiClientId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("SupportToolsServerCore.Domain.SmartSchemas.SmartSchema", null)
+                        .WithMany()
+                        .HasForeignKey("SmartSchemaForExchangeId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("SupportToolsServerCore.Domain.SmartSchemas.SmartSchema", null)
+                        .WithMany()
+                        .HasForeignKey("SmartSchemaForLocalId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.OwnsOne("SupportToolsServerCore.Domain.Settings.DatabasesBackupFilesExchange", "DatabasesBackupFilesExchange", b1 =>
+                        {
+                            b1.Property<Guid>("GlobalSettingsId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<string>("DownloadTempExtension")
+                                .HasMaxLength(50)
+                                .HasColumnType("nvarchar(50)");
+
+                            b1.Property<Guid?>("ExchangeFileStorageId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<Guid?>("ExchangeSmartSchemaId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<Guid?>("LocalSmartSchemaId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<string>("UploadTempExtension")
+                                .HasMaxLength(50)
+                                .HasColumnType("nvarchar(50)");
+
+                            b1.HasKey("GlobalSettingsId");
+
+                            b1.HasIndex("ExchangeFileStorageId");
+
+                            b1.HasIndex("ExchangeSmartSchemaId");
+
+                            b1.HasIndex("LocalSmartSchemaId");
+
+                            b1.ToTable("GlobalSettings");
+
+                            b1.HasOne("SupportToolsServerCore.Domain.FileStorages.FileStorage", null)
+                                .WithMany()
+                                .HasForeignKey("ExchangeFileStorageId")
+                                .OnDelete(DeleteBehavior.Restrict);
+
+                            b1.HasOne("SupportToolsServerCore.Domain.SmartSchemas.SmartSchema", null)
+                                .WithMany()
+                                .HasForeignKey("ExchangeSmartSchemaId")
+                                .OnDelete(DeleteBehavior.Restrict);
+
+                            b1.WithOwner()
+                                .HasForeignKey("GlobalSettingsId");
+
+                            b1.HasOne("SupportToolsServerCore.Domain.SmartSchemas.SmartSchema", null)
+                                .WithMany()
+                                .HasForeignKey("LocalSmartSchemaId")
+                                .OnDelete(DeleteBehavior.Restrict);
+                        });
+
+                    b.Navigation("DatabasesBackupFilesExchange")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("SupportToolsServerCore.Domain.Settings.ProjectCreatorSettings", b =>
+                {
+                    b.HasOne("SupportToolsServerCore.Domain.FileStorages.FileStorage", null)
+                        .WithMany()
+                        .HasForeignKey("DatabaseExchangeFileStorageId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("SupportToolsServerCore.Domain.DatabaseServerConnections.DatabaseServerConnection", null)
+                        .WithMany()
+                        .HasForeignKey("DeveloperDbConnectionId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("SupportToolsServerCore.Domain.DeploymentEnvironments.DeploymentEnvironment", null)
+                        .WithMany()
+                        .HasForeignKey("ProductionEnvironmentId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("SupportToolsServerCore.Domain.Servers.Server", null)
+                        .WithMany()
+                        .HasForeignKey("ProductionServerId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("SupportToolsServerCore.Domain.SmartSchemas.SmartSchema", null)
+                        .WithMany()
+                        .HasForeignKey("UseSmartSchemaId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("SupportToolsServerCore.Domain.SmartSchemas.SmartSchemaDetail", b =>
