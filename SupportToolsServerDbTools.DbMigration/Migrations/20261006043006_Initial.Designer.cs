@@ -12,8 +12,8 @@ using SupportToolsServerDbPart.Db;
 namespace SupportToolsServerDbTools.DbMigration.Migrations
 {
     [DbContext(typeof(SupportToolsServerDbContext))]
-    [Migration("20261005165856_AddServerInfos")]
-    partial class AddServerInfos
+    [Migration("20261006043006_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
