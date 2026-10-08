@@ -532,6 +532,26 @@ namespace SupportToolsServerDbTools.DbMigration.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "GitRepoProjects",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    GitRepoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ProjectRelativePath = table.Column<string>(type: "nvarchar(260)", maxLength: 260, nullable: false),
+                    ProjectFileName = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_GitRepoProjects", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_GitRepoProjects_GitRepos_GitRepoId",
+                        column: x => x.GitRepoId,
+                        principalTable: "GitRepos",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ProjectCreatorSettings",
                 columns: table => new
                 {
@@ -831,6 +851,25 @@ namespace SupportToolsServerDbTools.DbMigration.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "GitRepoProjectDependencies",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ProjectName = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    GitRepoProjectId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_GitRepoProjectDependencies", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_GitRepoProjectDependencies_GitRepoProjects_GitRepoProjectId",
+                        column: x => x.GitRepoProjectId,
+                        principalTable: "GitRepoProjects",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ServerInfoAllowedTools",
                 columns: table => new
                 {
@@ -900,6 +939,18 @@ namespace SupportToolsServerDbTools.DbMigration.Migrations
                 name: "IX_GitIgnoreFileTypes_Name",
                 table: "GitIgnoreFileTypes",
                 column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_GitRepoProjectDependencies_GitRepoProjectId_ProjectName",
+                table: "GitRepoProjectDependencies",
+                columns: new[] { "GitRepoProjectId", "ProjectName" },
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_GitRepoProjects_GitRepoId_ProjectRelativePath_ProjectFileName",
+                table: "GitRepoProjects",
+                columns: new[] { "GitRepoId", "ProjectRelativePath", "ProjectFileName" },
                 unique: true);
 
             migrationBuilder.CreateIndex(
@@ -1202,6 +1253,9 @@ namespace SupportToolsServerDbTools.DbMigration.Migrations
                 name: "DotnetTools");
 
             migrationBuilder.DropTable(
+                name: "GitRepoProjectDependencies");
+
+            migrationBuilder.DropTable(
                 name: "GlobalSettings");
 
             migrationBuilder.DropTable(
@@ -1238,7 +1292,7 @@ namespace SupportToolsServerDbTools.DbMigration.Migrations
                 name: "StoredFiles");
 
             migrationBuilder.DropTable(
-                name: "GitRepos");
+                name: "GitRepoProjects");
 
             migrationBuilder.DropTable(
                 name: "NpmPackages");
@@ -1250,7 +1304,7 @@ namespace SupportToolsServerDbTools.DbMigration.Migrations
                 name: "ServerInfos");
 
             migrationBuilder.DropTable(
-                name: "GitIgnoreFileTypes");
+                name: "GitRepos");
 
             migrationBuilder.DropTable(
                 name: "Environments");
@@ -1260,6 +1314,9 @@ namespace SupportToolsServerDbTools.DbMigration.Migrations
 
             migrationBuilder.DropTable(
                 name: "Servers");
+
+            migrationBuilder.DropTable(
+                name: "GitIgnoreFileTypes");
 
             migrationBuilder.DropTable(
                 name: "DatabaseServerConnections");
