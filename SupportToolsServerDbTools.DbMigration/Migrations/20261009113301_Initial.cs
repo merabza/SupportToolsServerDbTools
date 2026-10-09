@@ -79,8 +79,6 @@ namespace SupportToolsServerDbTools.DbMigration.Migrations
                     FileStoragePath = table.Column<string>(type: "nvarchar(260)", maxLength: 260, nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
                     Password = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    FileNameMaxLength = table.Column<int>(type: "int", nullable: false),
-                    FileSizeSplitPositionInRow = table.Column<int>(type: "int", nullable: false),
                     FtpSiteLsFileOffset = table.Column<int>(type: "int", nullable: false),
                     Version = table.Column<int>(type: "int", nullable: false, defaultValue: 1)
                 },

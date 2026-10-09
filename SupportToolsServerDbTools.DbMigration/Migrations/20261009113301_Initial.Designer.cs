@@ -12,7 +12,7 @@ using SupportToolsServerDbPart.Db;
 namespace SupportToolsServerDbTools.DbMigration.Migrations
 {
     [DbContext(typeof(SupportToolsServerDbContext))]
-    [Migration("20261008123518_Initial")]
+    [Migration("20261009113301_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -250,12 +250,6 @@ namespace SupportToolsServerDbTools.DbMigration.Migrations
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("FileNameMaxLength")
-                        .HasColumnType("int");
-
-                    b.Property<int>("FileSizeSplitPositionInRow")
-                        .HasColumnType("int");
 
                     b.Property<string>("FileStoragePath")
                         .HasMaxLength(260)
