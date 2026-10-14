@@ -12,7 +12,7 @@ using SupportToolsServerDbPart.Db;
 namespace SupportToolsServerDbTools.DbMigration.Migrations
 {
     [DbContext(typeof(SupportToolsServerDbContext))]
-    [Migration("20261009113301_Initial")]
+    [Migration("20261013160701_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
