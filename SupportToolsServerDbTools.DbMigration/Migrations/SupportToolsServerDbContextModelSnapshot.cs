@@ -17,7 +17,7 @@ namespace SupportToolsServerDbTools.DbMigration.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "10.0.12")
+                .HasAnnotation("ProductVersion", "10.0.13")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -247,6 +247,12 @@ namespace SupportToolsServerDbTools.DbMigration.Migrations
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("FileNameMaxLength")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FileSizeSplitPositionInRow")
+                        .HasColumnType("int");
 
                     b.Property<string>("FileStoragePath")
                         .HasMaxLength(260)
