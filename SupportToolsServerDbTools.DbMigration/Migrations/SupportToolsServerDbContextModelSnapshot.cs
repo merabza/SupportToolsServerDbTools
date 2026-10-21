@@ -647,6 +647,9 @@ namespace SupportToolsServerDbTools.DbMigration.Migrations
                     b.Property<bool>("UseAlternativeWebAgent")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("UseLocalPackages")
+                        .HasColumnType("bit");
+
                     b.Property<int>("Version")
                         .IsConcurrencyToken()
                         .ValueGeneratedOnAdd()
