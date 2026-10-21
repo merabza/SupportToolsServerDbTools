@@ -648,7 +648,9 @@ namespace SupportToolsServerDbTools.DbMigration.Migrations
                         .HasColumnType("bit");
 
                     b.Property<bool>("UseLocalPackages")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
 
                     b.Property<int>("Version")
                         .IsConcurrencyToken()

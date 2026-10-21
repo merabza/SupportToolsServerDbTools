@@ -12,7 +12,7 @@ using SupportToolsServerDbPart.Db;
 namespace SupportToolsServerDbTools.DbMigration.Migrations
 {
     [DbContext(typeof(SupportToolsServerDbContext))]
-    [Migration("20261021084319_Initial")]
+    [Migration("20261021085428_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -651,7 +651,9 @@ namespace SupportToolsServerDbTools.DbMigration.Migrations
                         .HasColumnType("bit");
 
                     b.Property<bool>("UseLocalPackages")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
 
                     b.Property<int>("Version")
                         .IsConcurrencyToken()
