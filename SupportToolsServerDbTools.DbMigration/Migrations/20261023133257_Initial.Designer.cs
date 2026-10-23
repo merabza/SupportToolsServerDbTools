@@ -12,7 +12,7 @@ using SupportToolsServerDbPart.Db;
 namespace SupportToolsServerDbTools.DbMigration.Migrations
 {
     [DbContext(typeof(SupportToolsServerDbContext))]
-    [Migration("20261021085428_Initial")]
+    [Migration("20261023133257_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -524,16 +524,8 @@ namespace SupportToolsServerDbTools.DbMigration.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("DbContextProjectName")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
                     b.Property<Guid?>("EditorConfigFileTypeId")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("ExcludesRulesParametersFilePath")
-                        .HasMaxLength(260)
-                        .HasColumnType("nvarchar(260)");
 
                     b.Property<string>("KeyGuidPart")
                         .HasMaxLength(256)
@@ -550,10 +542,6 @@ namespace SupportToolsServerDbTools.DbMigration.Migrations
                         .HasMaxLength(260)
                         .HasColumnType("nvarchar(260)");
 
-                    b.Property<string>("MigrationSqlFilesFolder")
-                        .HasMaxLength(260)
-                        .HasColumnType("nvarchar(260)");
-
                     b.Property<string>("MigrationStartupProjectFilePath")
                         .HasMaxLength(260)
                         .HasColumnType("nvarchar(260)");
@@ -563,10 +551,6 @@ namespace SupportToolsServerDbTools.DbMigration.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("NewDataSeedingClassLibProjectName")
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
@@ -585,14 +569,6 @@ namespace SupportToolsServerDbTools.DbMigration.Migrations
                     b.Property<string>("ParametersFileExtension")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("PrepareProdCopyDatabaseProjectFilePath")
-                        .HasMaxLength(260)
-                        .HasColumnType("nvarchar(260)");
-
-                    b.Property<string>("PrepareProdCopyDatabaseProjectParametersFilePath")
-                        .HasMaxLength(260)
-                        .HasColumnType("nvarchar(260)");
 
                     b.Property<string>("ProgramArchiveDateMask")
                         .HasMaxLength(50)
@@ -618,26 +594,10 @@ namespace SupportToolsServerDbTools.DbMigration.Migrations
                         .HasMaxLength(260)
                         .HasColumnType("nvarchar(260)");
 
-                    b.Property<string>("ProjectShortPrefix")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
                     b.Property<string>("ProjectType")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("ScaffoldSeederProjectName")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("SeedProjectFilePath")
-                        .HasMaxLength(260)
-                        .HasColumnType("nvarchar(260)");
-
-                    b.Property<string>("SeedProjectParametersFilePath")
-                        .HasMaxLength(260)
-                        .HasColumnType("nvarchar(260)");
 
                     b.Property<string>("SolutionFileName")
                         .HasMaxLength(260)
@@ -749,11 +709,6 @@ namespace SupportToolsServerDbTools.DbMigration.Migrations
                     b.Property<Guid>("GitRepoId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Kind")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
                     b.Property<Guid>("ProjectId")
                         .HasColumnType("uniqueidentifier");
 
@@ -761,7 +716,7 @@ namespace SupportToolsServerDbTools.DbMigration.Migrations
 
                     b.HasIndex("GitRepoId");
 
-                    b.HasIndex("ProjectId", "GitRepoId", "Kind")
+                    b.HasIndex("ProjectId", "GitRepoId")
                         .IsUnique();
 
                     b.ToTable("ProjectGitRepos", (string)null);
@@ -1102,10 +1057,6 @@ namespace SupportToolsServerDbTools.DbMigration.Migrations
 
                     b.Property<Guid?>("DeveloperDbConnectionId")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("FakeHostProjectName")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("IndentSize")
                         .HasColumnType("int");

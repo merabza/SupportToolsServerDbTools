@@ -427,10 +427,6 @@ namespace SupportToolsServerDbTools.DbMigration.Migrations
                     ApiContractsProjectName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     SpaProjectName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     DbContextName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
-                    ProjectShortPrefix = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
-                    ScaffoldSeederProjectName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
-                    DbContextProjectName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
-                    NewDataSeedingClassLibProjectName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     ProgramArchiveDateMask = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     ProgramArchiveExtension = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     ParametersFileDateMask = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
@@ -442,13 +438,7 @@ namespace SupportToolsServerDbTools.DbMigration.Migrations
                     MigrationProjectFilePath = table.Column<string>(type: "nvarchar(260)", maxLength: 260, nullable: true),
                     DataSeederRulesByTableStartupProjectFilePath = table.Column<string>(type: "nvarchar(260)", maxLength: 260, nullable: true),
                     OldDataConvertorForDataSeeder = table.Column<string>(type: "nvarchar(260)", maxLength: 260, nullable: true),
-                    SeedProjectFilePath = table.Column<string>(type: "nvarchar(260)", maxLength: 260, nullable: true),
-                    SeedProjectParametersFilePath = table.Column<string>(type: "nvarchar(260)", maxLength: 260, nullable: true),
-                    ExcludesRulesParametersFilePath = table.Column<string>(type: "nvarchar(260)", maxLength: 260, nullable: true),
                     AppSetEnKeysJsonFileName = table.Column<string>(type: "nvarchar(260)", maxLength: 260, nullable: true),
-                    MigrationSqlFilesFolder = table.Column<string>(type: "nvarchar(260)", maxLength: 260, nullable: true),
-                    PrepareProdCopyDatabaseProjectFilePath = table.Column<string>(type: "nvarchar(260)", maxLength: 260, nullable: true),
-                    PrepareProdCopyDatabaseProjectParametersFilePath = table.Column<string>(type: "nvarchar(260)", maxLength: 260, nullable: true),
                     PairedDbObjectsResultFileName = table.Column<string>(type: "nvarchar(260)", maxLength: 260, nullable: true),
                     KeyGuidPart = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     DevDatabaseParameters_DbConnectionId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
@@ -556,7 +546,6 @@ namespace SupportToolsServerDbTools.DbMigration.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     IndentSize = table.Column<int>(type: "int", nullable: false),
-                    FakeHostProjectName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     ProjectsFolderPathReal = table.Column<string>(type: "nvarchar(260)", maxLength: 260, nullable: true),
                     SecretsFolderPathReal = table.Column<string>(type: "nvarchar(260)", maxLength: 260, nullable: true),
                     ProductionServerId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
@@ -653,7 +642,6 @@ namespace SupportToolsServerDbTools.DbMigration.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     GitRepoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Kind = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     ProjectId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
@@ -1053,9 +1041,9 @@ namespace SupportToolsServerDbTools.DbMigration.Migrations
                 column: "GitRepoId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProjectGitRepos_ProjectId_GitRepoId_Kind",
+                name: "IX_ProjectGitRepos_ProjectId_GitRepoId",
                 table: "ProjectGitRepos",
-                columns: new[] { "ProjectId", "GitRepoId", "Kind" },
+                columns: new[] { "ProjectId", "GitRepoId" },
                 unique: true);
 
             migrationBuilder.CreateIndex(
