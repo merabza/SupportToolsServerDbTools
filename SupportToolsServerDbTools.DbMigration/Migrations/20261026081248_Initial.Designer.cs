@@ -12,7 +12,7 @@ using SupportToolsServerDbPart.Db;
 namespace SupportToolsServerDbTools.DbMigration.Migrations
 {
     [DbContext(typeof(SupportToolsServerDbContext))]
-    [Migration("20261023133257_Initial")]
+    [Migration("20261026081248_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -816,6 +816,9 @@ namespace SupportToolsServerDbTools.DbMigration.Migrations
 
                     b.Property<Guid>("EnvironmentId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("OpenPort")
+                        .HasColumnType("bit");
 
                     b.Property<Guid>("ProjectId")
                         .HasColumnType("uniqueidentifier");

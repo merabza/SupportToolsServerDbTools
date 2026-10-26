@@ -740,6 +740,7 @@ namespace SupportToolsServerDbTools.DbMigration.Migrations
                     AppSettingsJsonSourceFileName = table.Column<string>(type: "nvarchar(260)", maxLength: 260, nullable: true),
                     AppSettingsEncodedJsonFileName = table.Column<string>(type: "nvarchar(260)", maxLength: 260, nullable: true),
                     ServiceUserName = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
+                    OpenPort = table.Column<bool>(type: "bit", nullable: false),
                     CurrentDatabaseParameters_DbConnectionId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     CurrentDatabaseParameters_DatabaseRecoveryModel = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     CurrentDatabaseParameters_DbServerFoldersSetName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
