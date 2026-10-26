@@ -814,6 +814,9 @@ namespace SupportToolsServerDbTools.DbMigration.Migrations
                     b.Property<Guid>("EnvironmentId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<bool>("OpenPort")
+                        .HasColumnType("bit");
+
                     b.Property<Guid>("ProjectId")
                         .HasColumnType("uniqueidentifier");
 
