@@ -422,6 +422,7 @@ namespace SupportToolsServerDbTools.DbMigration.Migrations
                     MinorVersion = table.Column<int>(type: "int", nullable: false),
                     UseAlternativeWebAgent = table.Column<bool>(type: "bit", nullable: false),
                     UseLocalPackages = table.Column<bool>(type: "bit", nullable: false, defaultValue: true),
+                    UsesDatabase = table.Column<bool>(type: "bit", nullable: false, defaultValue: true),
                     EditorConfigFileTypeId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     MainProjectName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     ApiContractsProjectName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
