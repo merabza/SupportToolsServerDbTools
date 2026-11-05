@@ -835,6 +835,10 @@ namespace SupportToolsServerDbTools.DbMigration.Migrations
                         .HasMaxLength(128)
                         .HasColumnType("nvarchar(128)");
 
+                    b.Property<string>("SpaEnvMode")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<Guid?>("WebAgentForCheckId")
                         .HasColumnType("uniqueidentifier");
 
