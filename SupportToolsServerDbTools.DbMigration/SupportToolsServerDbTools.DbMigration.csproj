@@ -1,8 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <!--მიგრაციის კოდს EF ავტომატურად აგენერირებს და ანალიზატორის წესებს ვერ დავუქვემდებარებთ-->
-    <NoWarn>$(NoWarn);CA1861;IDE0161</NoWarn>
+    <!--მიგრაციის კოდს EF ავტომატურად აგენერირებს და ანალიზატორის წესებს ვერ დავუქვემდებარებთ.
+        S101: EF Core 11 მიგრაციის კლასს იდენტიფიკატორით არქმევს (_20261118093654_AddDatabaseServerConnectionDatabaseName)-->
+    <NoWarn>$(NoWarn);CA1861;IDE0161;S101</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
